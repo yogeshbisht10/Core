@@ -1,0 +1,47 @@
+﻿@model EmployeeModel
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create Employee</h1>
+
+<table class="table table-bordered">
+    <tr>
+        <td>Name</td>
+        <td><input type="text" class="form-control" asp-for="Name" /></td>
+    </tr>
+    <tr>
+        <td>EmailId</td>
+        <td><input type="text" class="form-control" asp-for="EmailId" /></td>
+    </tr>
+    <tr>
+        <td>Gender</td>
+        <td>
+            <input type="radio" class="form-control" asp-for="Gender" value="M" /> Male
+            <br />
+            <input type="radio" class="form-control" asp-for="Gender" value="F" /> Female
+        </td>
+    </tr>
+    <tr>
+        <td>State</td>
+        <td>
+            <select asp-for="StateId">
+                <option value="">-- Select State --</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>Profile Image</td>
+        <td><input type="file" class="form-control" name="UserProfileImage" /></td>
+    </tr>
+    <tr>
+        <td>Password</td>
+        <td><input type="password" class="form-control" asp-for="Password" /></td>
+    </tr>
+    <tr>
+        <td>Term & Condition</td>
+        <td><input type="checkbox" class="form-control" asp-for="AcceptTerms" /></td>
+    </tr>
+</table>
+
