@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Core.Web.Models.EmployeeModel>
+@{
+    ViewData["Title"] = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<a class="btn btn-success">Create Employee</a>
+<br />
+<br />
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Id
+                </td>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.IsActive
+                </td>
+                <td>
+                    <a>Edit Employee</a>
+                </td>
+                <td>
+                    <a>Delete Employee</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
