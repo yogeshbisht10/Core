@@ -13,5 +13,7 @@ namespace Core.Web.Data
 
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Department> Departments { get; set; }
+        public DbSet<States> States { get; set; }
+        public DbSet<Cities> Cities { get; set; }
     }
 }

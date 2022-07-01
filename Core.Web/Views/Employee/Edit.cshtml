@@ -1,0 +1,17 @@
+﻿@model EmployeeModel
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit Employee</h1>
+
+@*create and edit form design are same so here we use partial view.
+partial view is show common layout *@
+
+<form asp-controller="Employee" asp-action="Create" method="post" class="mt-4" enctype="multipart/form-data">
+
+    @*Here we are passing model to partial so that the property can bind*@
+    <partial name="_CreateOrUpdate" model="Model" />
+    <button type="submit" class="btn btn-success">Edit Employee</button>
+</form>

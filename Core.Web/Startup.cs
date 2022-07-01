@@ -60,9 +60,10 @@ namespace Core.Web
 
             app.UseEndpoints(endpoints =>
             {
+                //set employee page default so that when website open first employee list will display
                 endpoints.MapControllerRoute(
                     name: "Default",
-                    pattern: "{Controller=Home}/{Action=Index}/{Id?}"
+                    pattern: "{Controller=Employee}/{Action=List}/{Id?}"
                     );
             });
         }

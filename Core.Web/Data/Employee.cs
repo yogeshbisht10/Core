@@ -23,6 +23,9 @@ namespace Core.Web.Data
         //use for dropdown
         public int? StateId { get; set; }
 
+        //add cityid on employee table
+        public int? CityId { get; set; }
+
         //use for password textbox
         public string Password { get; set; }        
         public bool? IsActive { get; set; }

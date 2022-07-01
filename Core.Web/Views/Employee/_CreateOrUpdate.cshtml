@@ -1,0 +1,65 @@
+﻿@model EmployeeModel
+
+@*asp-validation summary tag helper will display all the error in a div.*@
+<div asp-validation-summary="All" class="text-danger"></div>
+
+@*here edit employee id will save*@
+<input type="hidden" asp-for="Id" />
+
+<table class="table table-bordered">
+    <tr>
+        <td>Name</td>
+        <td>
+            <input type="text" class="form-control" asp-for="Name" />
+
+            @*span is used to give validation and asp-validation is a tag helper.*@
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </td>
+    </tr>
+    <tr>
+        <td>EmailId</td>
+        <td>
+            <input type="text" class="form-control" asp-for="EmailId" />
+            <span asp-validation-for="EmailId" class="text-danger"></span>
+        </td>
+    </tr>
+    <tr>
+        <td>Gender</td>
+        <td>
+            <input type="radio" asp-for="Gender" value="1" checked /> Male
+            <br />
+            <input type="radio" asp-for="Gender" value="2" /> Female
+        </td>
+    </tr>
+    <tr>
+        <td>State</td>
+        <td>
+            <select asp-for="StateId" class="form-control" asp-items="Model.AvailableStates">
+            </select>
+            <span asp-validation-for="StateId" class="text-danger"></span>
+        </td>
+    </tr>
+    <tr>
+        <td>City</td>
+        <td>
+            <select asp-for="CityId" class="form-control">
+            </select>
+            <span asp-validation-for="CityId" class="text-danger"></span>
+        </td>
+    </tr>
+    <tr>
+        <td>Profile Image</td>
+        <td><input type="file" class="form-control" name="UserProfileImage" /></td>
+    </tr>
+    <tr>
+        <td>Password</td>
+        <td>
+            <input type="password" class="form-control" asp-for="Password" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </td>
+    </tr>
+    <tr>
+        <td>Term & Condition</td>
+        <td><input type="checkbox" asp-for="AcceptTerms" /></td>
+    </tr>
+</table>
