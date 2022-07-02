@@ -107,31 +107,77 @@ namespace Core.Web.Controllers
 
         public async Task<IActionResult> Edit(int Id)
         {
-            //send model to edit view other wise it will give error
-            var model = new EmployeeModel();
+            //send model to edit view other wise it will give error           
+            var model = await _employeeService.GetEmployeeById(Id);
+            return View(model);
+        }
 
-
-
-
-            //bind dropdown. add some items on dropdown
-
-            model.AvailableStates.Add(new SelectListItem
+        /// <summary>
+        /// this method hit when employee view page button click
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<IActionResult> Edit(EmployeeModel model,
+             IFormFile UserProfileImage)
+        {
+            if (UserProfileImage != null && !string.IsNullOrEmpty(UserProfileImage.FileName))
             {
-                Text = "-- Select State --",
-                Value = "0"
-            });
-
-            var states = await _employeeService.GetStates();
-            foreach (var state in states)
-            {
-                model.AvailableStates.Add(new SelectListItem
+                try
                 {
-                    Text = state.Name,
-                    Value = state.Id.ToString()
-                });
+                    if (string.IsNullOrEmpty(UserProfileImage.ContentType))
+                        ModelState.AddModelError("", "Please select profile image");
+
+                    if (ModelState.IsValid)
+                    {
+                        Random rnd = new Random();
+                        var randomId = rnd.Next(10000, 99999);
+                        var pathtosave = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/profile");
+                        var filename = ContentDispositionHeaderValue.Parse(UserProfileImage.ContentDisposition).FileName.Trim('"');
+                        var renamefile = randomId.ToString() + "." + filename.Split('.').Last();
+                        var fullpath = Path.Combine(pathtosave, renamefile);
+                        using (var stream = new FileStream(fullpath, FileMode.Create))
+                        {
+                            UserProfileImage.CopyTo(stream);
+                        }
+
+                        model.ProfileImage = renamefile;
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", ex.Message);
+                }
+            }
+
+
+            if (ModelState.IsValid) //if all the validation is done then this if condition return true else return false
+            {
+                //after all validation. save the form
+                var employee = await _employeeService.UpdateEmployee(model);
+                if (employee != null)
+                {
+                    return RedirectToAction("List", "Employee");
+                }
             }
 
             return View(model);
+        }
+
+
+        public async Task<IActionResult> Delete(int Id)
+        {
+            var result = await _employeeService.DeleteEmployee(Id);
+            if (result > 0)
+            {
+                //redirect to action is used to redirect to page. first parameter belongs to action name
+                //second parameter belongs to controller name
+                
+                return RedirectToAction("List", "Employee");
+            }
+
+            return View();
         }
 
 

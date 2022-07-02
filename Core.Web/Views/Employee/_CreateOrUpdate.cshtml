@@ -42,19 +42,33 @@
     <tr>
         <td>City</td>
         <td>
-            <select asp-for="CityId" class="form-control">
+            <select asp-for="CityId" class="form-control" asp-items="Model.AvailableCities">
             </select>
             <span asp-validation-for="CityId" class="text-danger"></span>
         </td>
     </tr>
     <tr>
         <td>Profile Image</td>
-        <td><input type="file" class="form-control" name="UserProfileImage" /></td>
+        <td>
+            @if (Model.Id > 0)
+            {
+                if(!string.IsNullOrEmpty(Model.ProfileImage))
+                {
+                    <img src="/profile/@Model.ProfileImage" height="100" >
+                    <input type="hidden" asp-for="ProfileImage">
+                    <br />
+                    <br />
+                }
+            }
+
+            <input type="file" class="form-control" name="UserProfileImage" />
+            <input type="hidden" asp-for="ProfileImage" />
+        </td>
     </tr>
     <tr>
         <td>Password</td>
         <td>
-            <input type="password" class="form-control" asp-for="Password" />
+            <input type="text" class="form-control" asp-for="Password" />
             <span asp-validation-for="Password" class="text-danger"></span>
         </td>
     </tr>

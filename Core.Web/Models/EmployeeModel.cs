@@ -11,6 +11,7 @@ namespace Core.Web.Models
         public EmployeeModel()
         {
             AvailableStates = new List<SelectListItem>();
+            AvailableCities = new List<SelectListItem>();
         }
         public int Id { get; set; }
 
@@ -39,5 +40,6 @@ namespace Core.Web.Models
         public bool? IsActive { get; set; }
         public DateTime? CreatedOn { get; set; }
         public IList<SelectListItem> AvailableStates { get; set; }
+        public IList<SelectListItem> AvailableCities { get; set; }
     }
 }

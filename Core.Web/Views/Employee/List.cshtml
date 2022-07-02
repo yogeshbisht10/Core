@@ -33,10 +33,10 @@
                     @item.IsActive
                 </td>
                 <td>
-                    <a>Edit Employee</a>
+                    <a class="btn btn-sm btn-primary" asp-controller="Employee" asp-action="Edit" asp-route-Id="@item.Id">Edit </a>
                 </td>
                 <td>
-                    <a>Delete Employee</a>
+                    <a class="btn btn-sm btn-danger" asp-controller="Employee" asp-action="Delete" asp-route-Id="@item.Id">Delete </a>
                 </td>
             </tr>
         }

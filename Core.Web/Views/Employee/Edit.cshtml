@@ -9,7 +9,7 @@
 @*create and edit form design are same so here we use partial view.
 partial view is show common layout *@
 
-<form asp-controller="Employee" asp-action="Create" method="post" class="mt-4" enctype="multipart/form-data">
+<form asp-controller="Employee" asp-action="Edit" method="post" class="mt-4" enctype="multipart/form-data">
 
     @*Here we are passing model to partial so that the property can bind*@
     <partial name="_CreateOrUpdate" model="Model" />
